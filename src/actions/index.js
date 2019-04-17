@@ -11,8 +11,11 @@ export const FETCH_CHARS_FAIL = 'FETCH_CHARS_FAIL';
 
 export const fetch_chars = () => dispatch => {
     dispatch({ type: FETCH_CHARS_START });
-    axios.get('https://swapi.co/api/people/')
-    .then(response => {dispatch({ type: FETCH_CHARS_SUCCESS, payload: response.data.message});}
+
+    axios
+    .get('https://swapi.co/api/people/')
+    .then(response => {console.log(response);
+        dispatch({ type: FETCH_CHARS_SUCCESS, payload: response.data.results});}
     )
     .catch(err => {dispatch({ type: FETCH_CHARS_FAIL, payload: err});
 });
